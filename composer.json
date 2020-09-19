@@ -1,0 +1,21 @@
+{
+    "name": "andre-arc/laravel-midtrans",
+    "description": "Implementation Midtrans Payment Gateway for laravel",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andri Darnius",
+            "email": "andridarnius@gmail.com"
+        }
+    ],
+    "require": {
+        "midtrans/midtrans-php": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Andrearc\\LaravelMidtrans\\": "src/"
+        }
+    }
+
+}
