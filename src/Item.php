@@ -11,6 +11,20 @@ class Item {
     public $category;
     public $merchant_name;
 
+    /**
+     * Class constructor.
+     *
+     * @param array $data Array containing the necessary params.
+     *    $data = [
+     *      'id'            => (string) Item Id. Optional.
+     *      'price'         => (int) Item Price. Required.
+     *      'quantity'      => (int) Item Quantity. Required.
+     *      'name'          => (string) Item Name. Required.
+     *      'brand'         => (string) Item Brand. Optional.
+     *      'category'      => (string) Item Category. Optional.
+     *      'merchant_name' => (string) Merchant Name. Optional.
+     *    ]
+     */
     function __construct(array $data)
     {
         if(!array_key_exists('price', $data)){

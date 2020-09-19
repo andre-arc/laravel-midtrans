@@ -1,5 +1,7 @@
 <?php
 namespace Andrearc\LaravelMidtrans;
+
+use Exception;
 use \Midtrans;
 use Item;
 
@@ -43,20 +45,34 @@ class Payment {
         }
     }
 
-
+    /**
+     * @return object $data(token and redirect_url).
+     *
+     */
     function getSnap(){
+        if(empty($this->detail_transaction)){
+            throw new Exception('Transaction Details Must be set');
+        }
+
+        if(empty($this->item_data)){
+            throw new Exception('Item Data Must be set');
+        }
+
+        if(empty($this->detail_customer)){
+            throw new Exception('Customer Details Must be set');
+        }
+
         $params = array(
             'transaction_details' => $this->detail_transaction,
             'item_details' => $this->item_data,
             'customer_details' => $this->detail_customer
         );
+
+        echo json_encode($params);
         try {
              // Get Snap Payment Page URL
             $payment = \Midtrans\Snap::createTransaction($params);
-            return array(
-                'redirect_url' => $payment->redirect_url,
-                'token' => $payment->token
-            );
+            return $payment;
         } catch (Exception $e) {
             echo $e->getMessage();
         }
